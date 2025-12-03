@@ -24,12 +24,4 @@ public class TaskService {
     public boolean deleteTask(Task t) {
         return storage.remove(t);
     }
-    public boolean updateStatus(Task task, TaskStatus newStatus) {
-    if (!storage.contains(task)) {
-        return false;
-    }
-
-    task.setStatus(newStatus);
-    return true;
-}
 }
