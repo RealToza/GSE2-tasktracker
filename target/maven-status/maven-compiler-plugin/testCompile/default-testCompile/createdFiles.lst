@@ -1,4 +1,5 @@
 com/example/tasktracker/Task.class
 com/example/tasktracker/TaskServiceTest.class
 com/example/tasktracker/TaskService.class
+com/example/tasktracker/TaskServiceDeleteTest.class
 com/example/tasktracker/TaskStatus.class
