@@ -1,5 +1,8 @@
 package com.example.tasktracker;
 
 public enum TaskStatus {
-    OPEN, DONE
+    OPEN,
+    IN_PROGRESS,
+    DONE,
+    CLOSED
 }

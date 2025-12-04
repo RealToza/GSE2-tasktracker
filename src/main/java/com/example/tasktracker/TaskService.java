@@ -24,4 +24,18 @@ public class TaskService {
     public boolean deleteTask(Task t) {
         return storage.remove(t);
     }
+    public boolean updateStatus(Task t, TaskStatus newStatus) {
+    if (t == null || newStatus == null) {
+        return false;
+    }
+
+    if (!storage.contains(t)) {
+        return false;
+    }
+
+    t.setStatus(newStatus);
+    return true;
+}
+
+
 }

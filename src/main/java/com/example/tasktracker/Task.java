@@ -1,23 +1,21 @@
 package com.example.tasktracker;
 
 public class Task {
-    private final String description;
-    private TaskStatus status;
+
+    private int id;
+    private String description;
+    private TaskStatus status = TaskStatus.OPEN;
 
     public Task(String description) {
         this.description = description;
-        this.status = TaskStatus.OPEN;
     }
 
-    public String getDescription() {
-        return description;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public TaskStatus getStatus() {
-        return status;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setStatus(TaskStatus status) {
-        this.status = status;
-    }
+    public TaskStatus getStatus() { return status; }
+    public void setStatus(TaskStatus status) { this.status = status; }
 }

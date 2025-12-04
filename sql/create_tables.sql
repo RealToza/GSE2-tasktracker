@@ -1,0 +1,5 @@
+CREATE TABLE Tasks (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    description NVARCHAR(255) NOT NULL,
+    status NVARCHAR(20) NOT NULL DEFAULT 'OPEN'
+);

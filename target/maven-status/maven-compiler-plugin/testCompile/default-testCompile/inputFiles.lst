@@ -1,4 +1,5 @@
-/mnt/c/Users/Robin/Documents/Semester 2/GSE2/Abgabe/tasktracker/src/test/java/com/example/tasktracker/Task.java
-/mnt/c/Users/Robin/Documents/Semester 2/GSE2/Abgabe/tasktracker/src/test/java/com/example/tasktracker/TaskService.java
+/mnt/c/Users/Robin/Documents/Semester 2/GSE2/Abgabe/tasktracker/src/test/java/com/example/tasktracker/TaskServiceDeleteTest.java
+/mnt/c/Users/Robin/Documents/Semester 2/GSE2/Abgabe/tasktracker/src/test/java/com/example/tasktracker/DatabaseConnectionTest.java
+/mnt/c/Users/Robin/Documents/Semester 2/GSE2/Abgabe/tasktracker/src/test/java/com/example/tasktracker/TaskServiceUpdateTest.java
+/mnt/c/Users/Robin/Documents/Semester 2/GSE2/Abgabe/tasktracker/src/test/java/com/example/tasktracker/TaskRepositoryTest.java
 /mnt/c/Users/Robin/Documents/Semester 2/GSE2/Abgabe/tasktracker/src/test/java/com/example/tasktracker/TaskServiceTest.java
-/mnt/c/Users/Robin/Documents/Semester 2/GSE2/Abgabe/tasktracker/src/test/java/com/example/tasktracker/TaskStatus.java
