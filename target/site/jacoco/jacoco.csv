@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+tasktracker,com.example.tasktracker,Task,0,30,0,0,0,10,0,7,0,7
+tasktracker,com.example.tasktracker,TaskStatus,0,44,0,0,0,5,0,1,0,1
+tasktracker,com.example.tasktracker,Database,3,5,0,0,1,1,1,1,1,1
+tasktracker,com.example.tasktracker,TaskRepository,49,147,6,6,11,35,6,6,1,5
+tasktracker,com.example.tasktracker,TaskService,2,58,3,7,1,14,3,7,0,5

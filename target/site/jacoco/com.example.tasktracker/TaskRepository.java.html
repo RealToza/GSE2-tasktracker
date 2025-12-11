@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TaskRepository.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tasktracker</a> &gt; <a href="index.source.html" class="el_package">com.example.tasktracker</a> &gt; <span class="el_source">TaskRepository.java</span></div><h1>TaskRepository.java</h1><pre class="source lang-java linenums">package com.example.tasktracker;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+<span class="fc" id="L11">public class TaskRepository {</span>
+
+    public Task save(Task t) throws SQLException {
+<span class="fc" id="L14">        String sql = &quot;&quot;&quot;</span>
+            INSERT INTO Tasks (description, status)
+            VALUES (?, ?);
+            &quot;&quot;&quot;;
+
+<span class="fc" id="L19">        try (Connection conn = Database.getConnection();</span>
+<span class="fc" id="L20">             PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {</span>
+
+<span class="fc" id="L22">            ps.setString(1, t.getDescription());</span>
+<span class="fc" id="L23">            ps.setString(2, t.getStatus().name());</span>
+<span class="fc" id="L24">            ps.executeUpdate();</span>
+
+<span class="fc" id="L26">            ResultSet rs = ps.getGeneratedKeys();</span>
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">            if (rs.next()) {</span>
+<span class="fc" id="L28">                t.setId(rs.getInt(1));</span>
+            }
+        }
+<span class="fc" id="L31">        return t;</span>
+    }
+
+    public List&lt;Task&gt; findAll() throws SQLException {
+<span class="nc" id="L35">        String sql = &quot;SELECT id, description, status FROM Tasks;&quot;;</span>
+<span class="nc" id="L36">        List&lt;Task&gt; result = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L38">        try (Connection conn = Database.getConnection();</span>
+<span class="nc" id="L39">             PreparedStatement ps = conn.prepareStatement(sql);</span>
+<span class="nc" id="L40">             ResultSet rs = ps.executeQuery()) {</span>
+
+<span class="nc bnc" id="L42" title="All 2 branches missed.">            while (rs.next()) {</span>
+<span class="nc" id="L43">                Task t = new Task(rs.getString(&quot;description&quot;));</span>
+<span class="nc" id="L44">                t.setId(rs.getInt(&quot;id&quot;));</span>
+<span class="nc" id="L45">                t.setStatus(TaskStatus.valueOf(rs.getString(&quot;status&quot;)));</span>
+<span class="nc" id="L46">                result.add(t);</span>
+            }
+        }
+<span class="nc" id="L49">        return result;</span>
+    }
+
+    public Task findById(int id) throws SQLException {
+<span class="fc" id="L53">        String sql = &quot;SELECT id, description, status FROM Tasks WHERE id = ?;&quot;;</span>
+
+<span class="fc" id="L55">        try (Connection conn = Database.getConnection();</span>
+<span class="fc" id="L56">             PreparedStatement ps = conn.prepareStatement(sql)) {</span>
+
+<span class="fc" id="L58">            ps.setInt(1, id);</span>
+<span class="fc" id="L59">            ResultSet rs = ps.executeQuery();</span>
+
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            if (rs.next()) {</span>
+<span class="fc" id="L62">                Task t = new Task(rs.getString(&quot;description&quot;));</span>
+<span class="fc" id="L63">                t.setId(rs.getInt(&quot;id&quot;));</span>
+<span class="fc" id="L64">                t.setStatus(TaskStatus.valueOf(rs.getString(&quot;status&quot;)));</span>
+<span class="fc" id="L65">                return t;</span>
+            }
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        }</span>
+<span class="fc" id="L68">        return null;</span>
+    }
+
+    public boolean update(Task t) throws SQLException {
+<span class="fc" id="L72">        String sql = &quot;&quot;&quot;</span>
+            UPDATE Tasks
+            SET description = ?, status = ?
+            WHERE id = ?;
+            &quot;&quot;&quot;;
+
+<span class="fc" id="L78">        try (Connection conn = Database.getConnection();</span>
+<span class="fc" id="L79">             PreparedStatement ps = conn.prepareStatement(sql)) {</span>
+
+<span class="fc" id="L81">            ps.setString(1, t.getDescription());</span>
+<span class="fc" id="L82">            ps.setString(2, t.getStatus().name());</span>
+<span class="fc" id="L83">            ps.setInt(3, t.getId());</span>
+
+<span class="pc bpc" id="L85" title="1 of 2 branches missed.">            return ps.executeUpdate() &gt; 0;</span>
+        }
+    }
+
+    public boolean delete(int id) throws SQLException {
+<span class="fc" id="L90">        String sql = &quot;DELETE FROM Tasks WHERE id = ?;&quot;;</span>
+
+<span class="fc" id="L92">        try (Connection conn = Database.getConnection();</span>
+<span class="fc" id="L93">             PreparedStatement ps = conn.prepareStatement(sql)) {</span>
+
+<span class="fc" id="L95">            ps.setInt(1, id);</span>
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">            return ps.executeUpdate() &gt; 0;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
